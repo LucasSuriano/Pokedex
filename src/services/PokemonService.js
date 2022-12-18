@@ -1,0 +1,12 @@
+export async function getAllPokemon(limit = 24, offset = 0) {
+    const url = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`;
+    const response = await fetch(url);
+    const { results } = await response.json();
+    return results;
+  }
+
+export async function getPokemonByUrl(urlPokemon) {
+    const response = await fetch(urlPokemon);
+    const pokemon = await response.json();
+    return pokemon;
+  }
