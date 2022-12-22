@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import {colours, getBackgroundByColor} from '../helpers/ColoursHelper';
 
 export default function PokemonCard({pokemon}){
     
     const type = pokemon.types[0].type.name;
     const sprite = pokemon.sprites.front_default;
+    const id = pokemon.id;
     const name = pokemon.name;
     
     function hexToRgb(hex){
@@ -23,10 +25,17 @@ export default function PokemonCard({pokemon}){
         const colorRGB1 = hexToRgb(primaryColor);
         const colorRGB2 = hexToRgb(secondaryColor);
         
-        return `linear-gradient(33deg, rgba(${colorRGB1.r},${colorRGB1.g},${colorRGB1.b},1) 25%, rgba(${colorRGB2.r},${colorRGB2.g},${colorRGB2.b},1) 75%)`;
+        return `linear-gradient(30deg, rgba(${colorRGB1.r},${colorRGB1.g},${colorRGB1.b},1) 25%, rgba(${colorRGB2.r},${colorRGB2.g},${colorRGB2.b},1) 75%)`;
       }
 
     return (
+      <Link to={`/detail/${id}`} style={{ 
+          textDecoration: 'none',
+          color: 'white',
+          textShadowColor: 'rgba(0, 0, 0, 0.75)',
+          textShadowOffset: {width: -1, height: 1},
+          textShadowRadius: 10
+        }}>
         <div
             className="item"
             style={{ background: 
@@ -34,8 +43,10 @@ export default function PokemonCard({pokemon}){
                     ? getColorGradiente(pokemon.types[1].type.name) 
                     : getBackgroundByColor(type) 
                 }}>
+            
             <img src={sprite} alt={"Image of " + name}/>
-            <h2>{name}</h2>
+            <h2>{id}: {name}</h2>
         </div>
+      </Link>
     )
 }

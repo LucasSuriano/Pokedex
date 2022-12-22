@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Navbar from './components/Navbar';
+import PokemonDetail from './components/PokemonDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +13,7 @@ root.render(
       <Routes>
         <Route path='/' element={<App />}/>
         <Route path='*' element={<App />}/>
-        <Route path='/number' element={<Navbar/>}/>
+        <Route path='/detail/:id' element={<PokemonDetail />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
