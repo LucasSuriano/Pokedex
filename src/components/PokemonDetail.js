@@ -25,7 +25,7 @@ export default function PokemonDetail(){
     console.log(pokemon);
 
     return (
-        <div>
+        <div className='detailContainer'>
             {pokemon
                 ? <div>
                     <button className="btn" onClick={()=>navigate("/")}>

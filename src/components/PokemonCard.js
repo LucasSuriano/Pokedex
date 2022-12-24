@@ -9,6 +9,17 @@ export default function PokemonCard({pokemon}){
     const id = pokemon.id;
     const name = pokemon.name;
 
+    function makeDivTypes(types){
+        return <div className='types'>
+            
+            <img className='imgType' src={require(`../icons/types/${types[0].type.name}.png`)} alt={types[0].type.name} />
+            {types[1] 
+                ? <img className='imgType' src={require(`../icons/types/${types[1].type.name}.png`)} alt={types[1].type.name} />
+                : null}
+        </div>
+        
+    }
+
     return (
       <Link to={`/detail/${id}`} style={{ 
           textDecoration: 'none',
@@ -18,15 +29,20 @@ export default function PokemonCard({pokemon}){
           textShadowRadius: 10
         }}>
         <div
-            className="item"
+            className="card"
             style={{ background: 
                 pokemon.types[1] 
                     ? getColourGradient(type, pokemon.types[1].type.name) 
                     : getBackgroundByColour(type) 
                 }}>
             
-            <img src={sprite} alt={"Image of " + name}/>
-            <h2>{id}: {name}</h2>
+            <img className='imgPokedex' src={sprite} alt={"Image of " + name}/>
+
+            <div className='infoPokemonCard'>
+                <div className='topCard'>
+                    <h3>{name} #{id}</h3>
+                </div>
+            </div>
         </div>
       </Link>
     )

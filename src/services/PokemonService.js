@@ -11,12 +11,6 @@ export async function getPokemonByUrl(urlPokemon) {
     return pokemon;
   }
 
-export async function getStatByUrl(urlStat) {
-    const response = await fetch(urlStat);
-    const stat = await response.json();
-    return stat;
-  }
-
 export async function getMoveByUrl(urlMove) {
     const response = await fetch(urlMove);
     const move = await response.json();
