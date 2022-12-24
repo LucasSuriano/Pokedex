@@ -37,11 +37,11 @@ export default function PokemonCard({pokemon}){
                 }}>
             
             <img className='imgPokedex' src={sprite} alt={"Image of " + name}/>
-
             <div className='infoPokemonCard'>
-                <div className='topCard'>
-                    <h3>{name} #{id}</h3>
-                </div>
+                <h3 className='pokemonName'>{name}</h3>
+            </div>
+            <div className='infoPokemonCard'>
+                <h3 className='pokemonId'>#{id}</h3>
             </div>
         </div>
       </Link>
