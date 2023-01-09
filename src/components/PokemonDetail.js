@@ -1,10 +1,10 @@
 import React , { useState, useEffect } from 'react';
 import { getPokemonByUrl } from '../services/PokemonService';
-import PokemonCard from './PokemonCard';
 import { useNavigate, useParams } from "react-router-dom";
 import pokeball from "../icons/pokeball.png"
 import Movements from './Movements';
 import Stats from './Stats';
+import Info from './Info';
 
 export default function PokemonDetail(){
     
@@ -25,17 +25,18 @@ export default function PokemonDetail(){
     console.log(pokemon);
 
     return (
-        <div className='detailContainer'>
+        <div >
             {pokemon
                 ? <div>
                     <button className="btn" onClick={()=>navigate("/")}>
                         <img alt="pokeball" src={pokeball} width="30px" height="30px"/>
                         Back
                     </button>
-                    <br></br>
-                    <PokemonCard pokemon={pokemon} key={id}/>
-                    <Stats pokemon={pokemon}/>
-                    <Movements pokemon={pokemon}/>
+                    <div className='detailContainer'>
+                        <Info pokemon={pokemon} key={id}/>
+                        <Stats pokemon={pokemon}/>
+                        <Movements pokemon={pokemon}/>
+                    </div>
                 </div>
                 : null
             }

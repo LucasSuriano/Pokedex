@@ -24,9 +24,6 @@ export default function PokemonCard({pokemon}){
       <Link to={`/detail/${id}`} style={{ 
           textDecoration: 'none',
           color: 'white',
-          textShadowColor: 'rgba(0, 0, 0, 0.75)',
-          textShadowOffset: {width: -1, height: 1},
-          textShadowRadius: 10
         }}>
         <div
             className="card"
