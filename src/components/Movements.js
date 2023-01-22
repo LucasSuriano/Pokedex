@@ -7,7 +7,6 @@ export default function Movements({pokemon}){
     const [move, setMove] = useState();
 
     const movements = pokemon.moves.map((movement, index)=>{
-        console.log(movement.move);
         return <li className='move' key={index}>
                 <div>
                     <h4 className='moveTitle'>{movement.move.name}</h4>

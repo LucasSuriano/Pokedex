@@ -7,7 +7,7 @@ import { getAllPokemon, getPokemonByUrl } from './services/PokemonService';
 
 export default function App() {
   const [pokemonList, setPokemonList] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(sessionStorage.getItem("page")?parseInt(sessionStorage.getItem("page")):1);
   const [loading, setLoading] = useState(true);
 
   //UseEffect sirve para ejecutar codigo cuando se modifica algun elemento entre los corchetes.
@@ -26,11 +26,8 @@ export default function App() {
   }
 
   async function getPokemons(limit = 24) {
-    
     setLoading(true);
-
     await sleep(500);
-
     const results = await getAllPokemon(limit, limit*page);
 
     const promesas = results.map(async (poke) => {
@@ -38,9 +35,7 @@ export default function App() {
     });
 
     const pokemones = await Promise.all(promesas);
-
     setLoading(false);
-
     setPokemonList(pokemones);
   }
 

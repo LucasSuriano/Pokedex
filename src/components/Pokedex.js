@@ -23,7 +23,7 @@ export default function Pokedex({pokemonList, page, setPage, totals}){
             {pokemonList ? (
                     <div className="grid">
                     {pokemonList.map((pokemon, index) => (
-                        <PokemonCard pokemon={pokemon} key={index}/>
+                        <PokemonCard pokemon={pokemon} key={index} page={page}/>
                     ))}
                     </div>
                 ) : null}

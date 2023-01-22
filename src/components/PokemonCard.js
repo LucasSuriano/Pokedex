@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getBackgroundByColour, getColourGradient} from '../helpers/ColoursHelper';
 
-export default function PokemonCard({pokemon}){
+export default function PokemonCard({pokemon,page}){
     
     const type = pokemon.types[0].type.name;
     const sprite = pokemon.sprites.front_default;
     const id = pokemon.id;
     const name = pokemon.name;
+    const navigate = useNavigate();
 
     function makeDivTypes(types){
         return <div className='types'>
@@ -20,8 +21,13 @@ export default function PokemonCard({pokemon}){
         
     }
 
+    async function goToDetail(){
+        await sessionStorage.setItem("page",page);
+        navigate(`/detail/${id}`);
+    }
+
     return (
-      <Link to={`/detail/${id}`} style={{ 
+      <Link onClick={goToDetail} style={{ 
           textDecoration: 'none',
           color: 'white',
         }}>
