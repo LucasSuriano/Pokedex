@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './index.css';
 
 import Navbar from './components/Navbar';
 import Pokedex from './components/Pokedex';
 import { getAllPokemon, getPokemonByUrl } from './services/PokemonService';
+import { AuthContext } from './auth/AuthContext';
 
 export default function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [page, setPage] = useState(sessionStorage.getItem("page")?parseInt(sessionStorage.getItem("page")):1);
   const [loading, setLoading] = useState(true);
+  const {user, dispatch} = useContext(AuthContext);
 
   //UseEffect sirve para ejecutar codigo cuando se modifica algun elemento entre los corchetes.
   useEffect(() => {
@@ -39,10 +41,19 @@ export default function App() {
     setPokemonList(pokemones);
   }
 
+  function createName(){
+    dispatch({type:"setName", payload:{name:"Lukitas"}})
+  }
+
+  function deleteName(){
+    dispatch({type:"deleteName"})
+  }
+
   return (
     <div className='container'>
       <Navbar />
-
+      <p onClick={createName}>Crear Nombre {user.name}</p>
+      <p onClick={deleteName}>Borrar Nombre</p>
       {loading 
         ? <img alt="Loading..." className="gif" src="https://cdn.dribbble.com/users/1081076/screenshots/2832850/pokemongo.gif"/>
         : <Pokedex pokemonList={pokemonList} page={page} setPage={setPage} totals={24}/>
